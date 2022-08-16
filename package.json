@@ -1,0 +1,27 @@
+{
+  "name": "tpumper",
+  "version": "1.0.0",
+  "description": "Tpump Randomizer",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Do-Tommy/tpumpme.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Do-Tommy/tpumpme/issues"
+  },
+  "homepage": "https://github.com/Do-Tommy/tpumpme#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  },
+  "type": "module"
+
+}
