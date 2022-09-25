@@ -14,6 +14,14 @@
     
 }
 
+.list-group-item {
+    display: none;
+}
+
+.selected {
+    background-color: lightblue;
+}
+
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */

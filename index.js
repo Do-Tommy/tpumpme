@@ -1,6 +1,7 @@
-function removeAllChildNodes(parent) {
-    while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
+
+  function removeAllChildNodes(parent) {
+    while(parent.firstChild) {
+      parent.removeChild(parent.lastChild);
     }
   }
   
@@ -11,17 +12,53 @@ function removeAllChildNodes(parent) {
 
   var flavors = [];
   var topping_list = [];
+  var highlightedlist = [false,false,false];
+
+  const flavor1 = document.getElementById("flavor1");
+  const flavor2 = document.getElementById("flavor2");
+  const flavor3 = document.getElementById("flavor3");
+  flavor1.addEventListener("click", () => {
+    flavor1.classList.toggle("selected");
+    highlightedlist[0] = !highlightedlist[0]
+    console.log(highlightedlist[0]);
+  })
+  
+  flavor2.addEventListener("click", () => {
+    flavor2.classList.toggle("selected");
+    highlightedlist[1] = !highlightedlist[1]
+    console.log(highlightedlist[1]);
+  })
+
+  flavor3.addEventListener("click", () => {
+    flavor3.classList.toggle("selected");
+    highlightedlist[2] = !highlightedlist[2]
+    console.log(highlightedlist[2]);
+  })
+
+
+
+  
   function getFlavors() {
-    
+    document.querySelectorAll(".list-group-item").forEach(a=>a.style.display = "initial");
     var toppingsCount = document.getElementById("toppingCount");
     var resultDiv = document.getElementById("results");
     var toppingdiv = document.getElementById("toppings_ul");
     var flavorHtml = document.createElement("p");
     var flavorLine = document.createElement("p");
-    removeAllChildNodes(resultDiv);
     removeAllChildNodes(toppingdiv);
-    var flavor_count = 0;
     var temp_flav;
+    var templist = [];
+    for(var c = 0; c < 3; c++) {
+      if(highlightedlist[c]) {
+        templist.push(flavors[c])
+      }
+    }
+    console.log(templist.length);
+    flavors = templist;
+
+    var flavor_count = flavors.length;
+    console.log(flavor_count)
+    
     while (flavor_count < 3) {
       temp_flav = flavor_list[Math.floor(Math.random() * flavor_list.length)];
       if (flavors.indexOf(temp_flav) == -1) {
@@ -38,25 +75,13 @@ function removeAllChildNodes(parent) {
       }
     }
     
+
     var ul = document.getElementById("results");
-    var li = document.createElement("li");
+    
 
-    li.className = "list-group-item text-primary";
-    li.id = "flavor1";
-    li.appendChild(document.createTextNode(flavors[0]));
-    ul.appendChild(li);
-
-    li = document.createElement("li");
-    li.className = "list-group-item text-primary";
-    li.id = "flavor2";
-    li.appendChild(document.createTextNode(flavors[1]));
-    ul.appendChild(li);
-
-    li = document.createElement("li");
-    li.className = "list-group-item text-primary";
-    li.id = "flavor3";
-    li.appendChild(document.createTextNode(flavors[2]));
-    ul.appendChild(li);
+    flavor1.innerHTML = flavors[0];
+    flavor2.innerHTML = flavors[1];
+    flavor3.innerHTML = flavors[2];
 
     var topli = document.getElementById("toppings_ul");
     console.log(topping_list.length);
@@ -73,26 +98,15 @@ function removeAllChildNodes(parent) {
     milk.className = "text-danger"
     milk.innerHTML= "your milk is " + milk_choice;
 
-    var flavor1 = document.getElementById("flavor1");
-    flavor1.addEventListener("click", () => {
-      console.log(flavor1.innerHTML);
-    })
 
-    var flavor2 = document.getElementById("flavor2");
-    flavor2.addEventListener("click", () => {
-      console.log(flavor2.innerHTML);
-    })
-
-    var flavor3 = document.getElementById("flavor3");
-    flavor3.addEventListener("click", () => {
-      console.log(flavor3.innerHTML);
-    })
+    
+    console.log(highlightedlist)
 
     
     
-  
-    flavors = [];
+
     topping_list = [];
+    
   }
   function openModal() {
     var modal = document.getElementById("flavormodal");
@@ -106,8 +120,6 @@ function removeAllChildNodes(parent) {
 
 
   
-  document.getElementById("rand_button").addEventListener("click", getFlavors);
-  
-
- document.getElementById("navFlavorModal").addEventListener("click",openModal);
+document.getElementById("rand_button").addEventListener("click", getFlavors);
+document.getElementById("navFlavorModal").addEventListener("click",openModal);
 document.getElementsByClassName("close")[0].addEventListener("click",closeModal);
