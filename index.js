@@ -1,12 +1,9 @@
 
-  function removeAllChildNodes(parent) {
-    while(parent.firstChild) {
-      parent.removeChild(parent.lastChild);
-    }
-  }
+ 
   
   
-  var flavor_list = "strawberry mango peach passionfruit blackberry tanerine cherry plum kiwi blueberry litchi watermelon greenapple guava banana coconut lemon ginger honey pineapple raspberry pomegranate rose lavendar chocolate vanilla cinammon chocolate cookiedough marshamallow saltedcaramel hazelnut almond gingebread caramel pumpkinspice almondroca taro match redbean honeydew"
+  var flavor_list = "strawberry mango peach passionfruit blackberry tanerine cherry plum kiwi blueberry litchi watermelon greenapple guava banana coconut lemon ginger honey pineapple coffee butterscotch frenchtoast frenchvanilla brownsugar " +
+  "raspberry pomegranate rose lavendar chocolate vanilla cinammon chocolate cookiedough marshamallow saltedcaramel hazelnut almond gingebread caramel pumpkinspice almondroca taro match redbean honeydew"
   flavor_list = flavor_list.split(" ");
   var toppings = ["boba", "poppingboba", "redbean", "taro", "bobabran"];
 
@@ -17,6 +14,13 @@
   const flavor1 = document.getElementById("flavor1");
   const flavor2 = document.getElementById("flavor2");
   const flavor3 = document.getElementById("flavor3");
+  
+  function removeAllChildNodes(parent) {
+    while(parent.firstChild) {
+      parent.removeChild(parent.lastChild);
+    }
+  }
+
   flavor1.addEventListener("click", () => {
     flavor1.classList.toggle("selected");
     highlightedlist[0] = !highlightedlist[0]
