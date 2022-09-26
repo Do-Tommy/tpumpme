@@ -44,6 +44,7 @@
   
   function getFlavors() {
     document.querySelectorAll(".list-group-item").forEach(a=>a.style.display = "initial");
+    
     var toppingsCount = document.getElementById("toppingCount");
     var resultDiv = document.getElementById("results");
     var toppingdiv = document.getElementById("toppings_ul");
@@ -93,6 +94,7 @@
       var item = document.createElement("li");
       item.className = "list-group-item text-primary";
       item.appendChild(document.createTextNode(topping_list[x]));
+      item.style.display = 'initial';
       topli.appendChild(item);
     }
 
