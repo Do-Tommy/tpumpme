@@ -24,54 +24,58 @@
   flavor1.addEventListener("click", () => {
     flavor1.classList.toggle("selected");
     highlightedlist[0] = !highlightedlist[0]
-    console.log(highlightedlist[0]);
+    
   })
   
   flavor2.addEventListener("click", () => {
     flavor2.classList.toggle("selected");
     highlightedlist[1] = !highlightedlist[1]
-    console.log(highlightedlist[1]);
   })
 
   flavor3.addEventListener("click", () => {
     flavor3.classList.toggle("selected");
     highlightedlist[2] = !highlightedlist[2]
-    console.log(highlightedlist[2]);
+    
   })
 
-
-
-  
   function getFlavors() {
     document.querySelectorAll(".list-group-item").forEach(a=>a.style.display = "initial");
     
     var toppingsCount = document.getElementById("toppingCount");
-    var resultDiv = document.getElementById("results");
     var toppingdiv = document.getElementById("toppings_ul");
-    var flavorHtml = document.createElement("p");
-    var flavorLine = document.createElement("p");
+    var flavorDivs = [flavor1,flavor2,flavor3];
     removeAllChildNodes(toppingdiv);
     var temp_flav;
     var templist = [];
+    
+
     for(var c = 0; c < 3; c++) {
       if(highlightedlist[c]) {
-        templist.push(flavors[c])
+        templist[c] = flavors[c];
       }
+      
     }
-    console.log(templist.length);
+    
+    //flavorDivs[c].classList.contains('selected')
+    
     flavors = templist;
 
-    var flavor_count = flavors.length;
-    console.log(flavor_count)
+    var flavor_count = flavors.filter(Boolean).length;
+    var tempcount = 0;
     
-    while (flavor_count < 3) {
+    debugger
+    while (tempcount < 3) {
       temp_flav = flavor_list[Math.floor(Math.random() * flavor_list.length)];
-      if (flavors.indexOf(temp_flav) == -1) {
-        flavors.push(temp_flav);
-        flavor_count += 1;
+      if (flavors.indexOf(temp_flav) == -1 && !highlightedlist[tempcount]) {
+        flavors[tempcount] = temp_flav;
+        
       }
+      tempcount += 1;
     }
-  
+
+    
+    
+
     var value = toppingsCount.options[toppingsCount.selectedIndex].value;
     while (topping_list.length < value) {
       var rand_topping = toppings[Math.floor(Math.random() * toppings.length)];
