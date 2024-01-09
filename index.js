@@ -36,7 +36,7 @@ flavor3.addEventListener("click", () => {
 })
 
 function getFlavors() {
-  document.querySelectorAll(".list-group-item").forEach(a=>a.style.display = "initial");
+  //document.querySelectorAll(".list-group-item").forEach(a=>a.style.display = "initial");
   
   var toppingsCount = document.getElementById("toppingCount");
   var toppingdiv = document.getElementById("toppings_ul");
@@ -70,9 +70,6 @@ function getFlavors() {
     tempcount += 1; 
   }
 
-  
-  
-
   var value = toppingsCount.options[toppingsCount.selectedIndex].value;
   while (topping_list.length < value) {
     var rand_topping = toppings[Math.floor(Math.random() * toppings.length)];
@@ -80,9 +77,9 @@ function getFlavors() {
       topping_list.push(rand_topping);
     }
   }
-  
 
-  var ul = document.getElementById("results");
+
+  //var ul = document.getElementById("results");
   
 
   flavor1.innerHTML = flavors[0];
@@ -103,14 +100,22 @@ function getFlavors() {
   console.log(milk_choice);
   var milk = document.getElementById("milk");
   milk.className = "text-danger"
-  milk.innerHTML= "your milk is " + milk_choice;
-
-
   
-  console.log(highlightedlist)
+  if(milk_choice == 'yes') {
+    milk.innerHTML = "Milk"
+  }else {
+    milk.innerHTML = "No Milk"
+  }
+  
 
-  
-  
+  var flavorelement = Array.from(document.getElementsByClassName("flavorspin"));
+
+  flavorelement.forEach((element) => {
+      element.classList.remove('reelanimate');
+  setTimeout(() => {
+    element.classList.add('reelanimate');
+  }, 0);
+    });
 
   topping_list = [];
   
@@ -134,13 +139,20 @@ function spinReel(reel) {
     reel.textContent = randomSymbol;
 }
 
-
+//spin on click requires a settimeout to properly add and remove animate class reelanimate 
 function spin() {
     var reelelement = Array.from(document.getElementsByClassName("reel"));
-    reelelement.forEach((element) => element.classList.add('reelanimate'));
+    reelelement.forEach((element) => {
+      element.classList.remove('reelanimate');
+  setTimeout(() => {
+    element.classList.add('reelanimate');
+  }, 0);
+    });
+
     spinReel(reel1);
     spinReel(reel2);
     spinReel(reel3);
+    
 }
 
 
